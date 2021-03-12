@@ -9,19 +9,8 @@ import './style.css'
 
 function App() {
   var [search,setSearch] = useState('');
-
-  useEffect(() => {
-    async function abc() {
-      let {data} = await axios.get('https://run.mocky.io/v3/abf2455f-9407-4cc9-a35c-abf966604e6f')
-
-
-     console.log(data);
-
-    }
-    abc();
-  }, []);
-
-  var [posts,setPosts] = useState([
+  var [posts,setPosts] = useState(
+     [
     {
       "by" : "jganetsk",
       "id" : 8958,
@@ -60,11 +49,30 @@ function App() {
       "title" : "Ask HN: The Arc Effect",
       "type" : "story"
     }
-  ])
-;
+   
+  
+]
+  
+  )
 
+const list =[]
+let ans;
+
+  useEffect(() => {
+    async function abc() {
+      var {data} = await axios.get('https://604c115aee7cb900176a2d28.mockapi.io/api');
+     
+
+    
+  
+    }
+    abc();
+ 
+  }, [posts]);
 
  
+const renderList = posts.filter((post) => post.text.toLowerCase().includes(search.toLowerCase()));
+
     
 
 
@@ -74,25 +82,24 @@ function App() {
     <div className="Hacker News ">
       
       <nav className="navbar navbar-expand-lg navbar-light orange mb-5">
-      <a class="navbar-brand mr-5" href="#">News Hacker Display</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+      <a className="navbar-brand mr-5" href="#">News Hacker Display</a>
+  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span className="navbar-toggler-icon"></span>
 
   </button>
  
-  <input type="text" class="form-control col-md-8 " id="exampleInputEmail1" value={search} onChange={(e) => setSearch(e.target.value)} aria-describedby="emailHelp" placeholder="Enter Search Query" />
-      
-  
-
+  <input type="text" className="form-control col-md-8 " id="exampleInputEmail1" value={search} onChange={(e) => setSearch(e.target.value)} aria-describedby="emailHelp" placeholder="Enter Search Query" />
       </nav>
       
     
-     
-   {
-     posts.map((post) => (
-       <News search={search} name = {post.text} id={post.id} comment={post.by} type={post.type} ></News>
-     ))
-   }
+     {
+       renderList.length==0 ? <div className= "align-text-center row justify-content-center">No search results</div>: posts.map((post) => (
+        <News search={search} name = {post.text} id={post.id} comment={post.by} type={post.type} ></News>
+      ))
+     }
+
+
+  
 
 
     
