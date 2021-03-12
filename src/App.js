@@ -111,22 +111,22 @@ const storyChange =  (val) => {
 
   setPosts(list)
 
-if(val == 1){
+if(val === "1"){
  setPosts(list);
 
- var res = posts.filter((post) => post.type == "story")
+ var res = posts.filter((post) => post.type === "story")
 
  setPosts(res);
 }
 
-if(val == 2 )
+if(val === "2" )
 {
  
 setPosts(list);
 
-  var res = posts.filter((post) => post.type == "comment")
+  var rest = posts.filter((post) => post.type === "comment")
   
- setPosts(res);
+ setPosts(rest);
 }
 
 }
@@ -140,13 +140,13 @@ setPosts(list);
     <div className="Hacker News ">
 
       <nav className="navbar navbar-expand-lg navbar-light orange mb-5">
-        <a className="navbar-brand mr-5" href="#">News Hacker Display</a>
+        <span className="navbar-brand mr-5" >News Hacker Display</span>
        
 
         <input type="text" className="form-control col-md-8 " id="exampleInputEmail1" value={search} onChange={(e) => setSearch(e.target.value)} aria-describedby="emailHelp" placeholder="Enter Search Query" />
       </nav>
       
-  <select class="form-select justify-content-center block mb-3 ml-5 "  onClick={(e)=>storyChange(e.target.value)}>
+  <select className="form-select justify-content-center block mb-3 ml-5 "  onClick={(e)=>storyChange(e.target.value)}>
   <option  value="0">Select Option to Filter</option>
   <option value="1" >Story</option>
   <option value="2">Comment</option>
@@ -157,7 +157,7 @@ setPosts(list);
 
       {
         renderList.length === 0 ? <div className="align-text-center row justify-content-center"><h1>No search results</h1></div> : renderList.map((post) => (
-          <News search={search} name={post.text} id={post.id} comment={post.by} type={post.type} ></News>
+          <News search={search} key= {post.id} name={post.text} id={post.id} comment={post.by} type={post.type} ></News>
         ))
       }
 
