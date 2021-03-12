@@ -1,6 +1,6 @@
 
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import News from './News'
@@ -8,6 +8,8 @@ import './style.css'
 
 
 function App() {
+  const x = 5;
+  console.log(x);
   const list = [ {
     "by": "jganetsk",
     "id": 8958,
