@@ -93,7 +93,7 @@ const renderList = posts.filter((post) => post.text.toLowerCase().includes(searc
       
     
      {
-       renderList.length==0 ? <div className= "align-text-center row justify-content-center">No search results</div>: posts.map((post) => (
+       renderList.length==0 ? <div className= "align-text-center row justify-content-center">No search results</div>: renderList.map((post) => (
         <News search={search} name = {post.text} id={post.id} comment={post.by} type={post.type} ></News>
       ))
      }
